@@ -2,10 +2,12 @@ import pyperclip
 import pyshorteners
 from tkinter import *
 
+mycolor = '#%02x%02x%02x' % (65, 65, 65)
+
 root = Tk()
-root.geometry("400x200")
+root.geometry("400x250")
 root.title("URL Shoertener")
-root.configure(bg="Blue")
+root.configure(bg=mycolor)
 url = StringVar()
 url_address = StringVar()
 
@@ -14,15 +16,15 @@ def url_shortener():
     url_short = pyshorteners.Shortener().tinyurl.short(urladdress)
     url_address.set(url_short)
 
-
 def copy_url():
     url_short= url_address.get()
     pyperclip.copy(url_short)
 
-Label(root, text= "My URL Shortener", font = "poppins").pack(pady=10)
-Entry(root, textvariable=url).pack(pady=5)
-Button(root, text = 'Generate Short URL', command=url_shortener).pack(pady= 7)
-Entry(root, textvariable = url_address).pack(pady =  5)
-Button(root, text= "Copy URL", command = copy_url).pack(pady =  5)
+Label(root,bg=mycolor, fg = "White", text= "My URL Shortener", font = "poppins").pack(pady=10)
+Label(root,bg=mycolor, fg = "White", text= "Please paste the URL HERE ↓ ", font = "poppins").pack(pady=1)
+Entry(root,bg="black", fg = "white", textvariable=url).pack(pady=5)
+Button(root,text = 'Generate Short URL',fg= "royal blue" ,command=url_shortener).pack(pady= 7)
+Entry(root,bg="black", fg = "white", textvariable = url_address).pack(pady =  5)
+Button(root, text= "Copy URL",fg= "royal blue", command = copy_url).pack(pady =  5)
 
 root.mainloop()
